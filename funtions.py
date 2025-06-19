@@ -16,6 +16,7 @@ def buscar(lista):
                         print("- " + x)
                 else:
                     print("No se encontraron tareas")
+              
                     
 def eliminar(lista):
     if len(lista) == 0:
