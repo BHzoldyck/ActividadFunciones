@@ -19,8 +19,25 @@ def agregar(lista):
 
 def mostrar(lista):
     if len(lista) == 0:
-        print("No hay contactos registrados.")
-    else:    
-        print("La lista de contactos registrados es: \n")   
+        print("No existen contactos.")
+    else:
+        palabra = input("Ingrese nombre: ") 
+        encontrados = []
+        for x in lista:
+            if palabra in contacto.lower():
+                encontrados.append(contacto)
+                if len(encontrados) > 0:
+                    print("===Tareas encontradas===")
+                    for x in encontrados:
+                        print("- " + x)
+                else:
+                    print("No se encontraron tareas")
+              
+                    
+def eliminar(lista):
+    if len(lista) == 0:
+        print("No existen contactos")
+    else:
+        print("La lista de contactos registrados es:\n ")
         for x in range(len(lista)):
             print(f"{x+1} - {lista[x]}")
