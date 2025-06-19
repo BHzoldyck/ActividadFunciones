@@ -15,7 +15,7 @@ def buscar(lista):
                     for x in encontrados:
                         print("- " + x)
                 else:
-                    print("No se encontraron tareas.")
+                    print("No se encontraron tareas")
                     
 def eliminar(lista):
     if len(lista) == 0:
