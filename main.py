@@ -24,7 +24,7 @@ from funtions import *
 # o	Alumno 2: Función para buscar y eliminar contactos.
 # o	Alumno 3: Estructura del menú principal y control de flujo del programa.
 
-contactos = []
+contactos = [pepito,telefono,email,nombre2,]
 
 while True:
     os.system("cls")
@@ -45,7 +45,7 @@ while True:
         elif opcion == 2:
             os.system("cls")
             print("\tLISTAR CONTACTOS\n")   
-            mostrar(contactos)
+            listar(contactos)
             os.system("Pause")
 
         elif opcion == 3:
@@ -86,3 +86,4 @@ while True:
         os.system("cls")
         print("opcion no valida, intente nuevamente")
         os.system("Pause")
+

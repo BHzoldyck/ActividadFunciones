@@ -1,43 +1,53 @@
 def agregar(lista):
-    nombre = ""
-    telefono = 0
-    mail = ""
-    sublista = []
-    while (len(nombre) <= 2):
-        nombre = input("Ingrese el nombre del contacto (largo del nombre debe ser minimo de 3 caracteres): \n")
-        sublista.append(nombre)
-    while telefono < 100000000 or telefono > 999999999:
-        try:
-            telefono = int(input("Digite su numero de telefono de contacto de nueve (9) digitos: \n"))
-        except:
-            print("El numero ingresado no es valido, por favor intente nuevamente: \n")
-        sublista.append(telefono)
-    while "@" not in mail:
-        mail = input("Ingrese su dirección de correo valida: \n")
-        sublista.append(mail)
-    lista.append(sublista)
+    while True:
+        nombre = input("Ingrese el nombre del contacto (mínimo 3 caracteres): ").strip()
+        if len(nombre) >= 3:
+            break
+        print("El nombre es demasiado corto.")
 
-def mostrar(lista):
-    if len(lista) == 0:
-        print("No existen contactos.")
+    while True:
+        try:
+            telefono = int(input("Ingrese el número de teléfono (9 dígitos): "))
+            if 100000000 <= telefono <= 999999999:
+                break
+            else:
+                print("El número debe tener exactamente 9 dígitos.")
+        except:
+            print("Número inválido. Intente de nuevo.")
+
+    while True:
+        email = input("Ingrese el correo electrónico: ").strip()
+        if "@" in email and "." in email:
+            break
+        print("Correo inválido.")
+
+    contacto = {"nombre": nombre, "telefono": telefono, "email": email}
+    lista.append(contacto)
+    print("Contacto agregado correctamente.")
+
+def listar(lista):
+    if not lista:
+        print("No hay contactos registrados.")
     else:
-        palabra = input("Ingrese nombre: ") 
-        encontrados = []
-        for x in lista:
-            if palabra in contacto.lower():
-                encontrados.append(contacto)
-                if len(encontrados) > 0:
-                    print("===Tareas encontradas===")
-                    for x in encontrados:
-                        print("- " + x)
-                else:
-                    print("No se encontraron tareas")
-              
-                    
+        print("Lista de contactos:")
+        for i, contacto in enumerate(lista, 1):
+            print(f"{i}) Nombre: {contacto['nombre']}, Tel: {contacto['telefono']}, Email: {contacto['email']}")
+
+def buscar(lista):
+    nombre_buscado = input("Ingrese el nombre a buscar: ")
+    encontrado = False
+    for contacto in lista:
+        if contacto['nombre'].lower() == nombre_buscado.lower():
+            print(f"{contacto['nombre']} - {contacto['telefono']} - {contacto['email']}")
+            encontrado = True
+    if not encontrado:
+        print("No se encontró el contacto.\n")
+
 def eliminar(lista):
-    if len(lista) == 0:
-        print("No existen contactos")
-    else:
-        print("La lista de contactos registrados es:\n ")
-        for x in range(len(lista)):
-            print(f"{x+1} - {lista[x]}")
+    nombre_eliminar = input("Ingrese el nombre del contacto a eliminar: ")
+    for contacto in lista:
+        if contacto['nombre'].lower() == nombre_eliminar.lower():
+            lista.remove(contacto)
+            print("Contacto eliminado correctamente.\n")
+            return
+    print("No se encontró un contacto con ese nombre.\n")
